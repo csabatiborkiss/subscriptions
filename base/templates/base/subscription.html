@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% block content %}
+    <h1>{{ subscription.provider }} -- {{ subscription.service }}</h1>
+    <ul>
+        <li>
+            <span>Category: {{ subscription.category }}</span>
+        </li>
+        <li>
+            <span>Price: {{ subscription.price }}</span>
+        </li>
+        <li>
+            <span>Added: {{ subscription.created }}</span>
+        </li>
+    </ul>
+{% endblock%}

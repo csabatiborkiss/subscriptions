@@ -1,0 +1,21 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<div class="navbar-container">
+<a href="/">
+    <h1 class="quiet-link">Subscriptions</h1>
+</a>
+<form method="get" class="search-form" action="{% url 'home' %}">
+    <input class="search-input" type="text" name="q" placeholder="Search Subscriptions...">
+    <button type="submit" class="blue-button">Search</button>
+</form>
+{% if request.user.is_authenticated %}
+    <div class="userinfo-container">
+    <span class="userinfo-text">Hello {{ request.user }}</span>
+    <a class="userinfo-text blue-button" href="{% url 'logout' %}">Logout</a>
+    </div>
+{% else %}
+    <a class="userinfo-text blue-button" href="{% url 'login' %}">Login</a>
+{% endif %}
+</div>
+<hr>

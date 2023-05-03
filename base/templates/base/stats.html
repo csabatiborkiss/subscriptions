@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% load static %}
+{%  block content %}
+<div class="stats-container">
+    <h3>Monthly total sum: {{ total_sum }}</h3>
+    <table>
+    <tr>
+        <th>Category</th>
+        <th>Monthly Price</th>
+    </tr>
+    {% for category, price in stats.items %}
+        <tr><td>{{ category }}</td> <td>{{ price }}</td></tr>
+    {%  endfor  %}
+    </table>
+</div>
+    <div class="chart-container">
+        <img src="../../static/piechart.png" width="640" height="480" alt="stats">
+    </div>
+{%  endblock %}

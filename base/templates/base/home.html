@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+
+    <div class="home-container">
+    <div>
+        <h3>Browse Categories</h3>
+    <div>
+        <a class="quiet-link" href="{% url 'home' %}">All</a>
+    </div>
+        {% for category in categories %}
+            <div>
+                <a class="quiet-link" href="{% url 'home' %}?q={{ category.name }}">{{ category.name }}</a>
+            </div>
+        {% endfor %}
+    <div>
+        <a class="quiet-link" href="{% url 'statistics' %}"><h3>Statistics</h3></a>
+    </div>
+    </div>
+    <div>
+        <a class="create-sub-text green-button" href="{% url 'create-subscription' %}">Create Subscription</a>
+    <hr>
+        <div>
+            {% for subscription in subscriptions %}
+            {% if request.user == subscription.owner %}
+                <div>
+                    <p><a class="quiet-link" href="{% url 'subscription' subscription.id%}">{{ subscription}}</a></p>
+                    <p>Monthly Price: {{ subscription.price }}</p>
+                    <h5>{{ subscription.category.name }}</h5>
+                    <a class="blue-button" href="{% url 'update-subscription'  subscription.id %}">Edit</a>
+                    <a class="red-button" href="{% url 'delete-subscription'  subscription.id %}">Delete</a>
+                    <hr>
+                </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    </div>
+
+{% endblock  %}
