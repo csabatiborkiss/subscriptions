@@ -1,7 +1,7 @@
 """
     Handles the GET and POST requests
 """
-
+# pylint: disable=E1101
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -162,9 +162,9 @@ def stats(request):
 
     stat_keys = []
     stat_values = []
-    for key in stats_obj:
+    for key, value in stats_obj.items():
         stat_keys.append(key)
-        stat_values.append(stats_obj[key])
+        stat_values.append(value)
 
     plt.pie(np.array(stat_values), labels=stat_keys)
 
