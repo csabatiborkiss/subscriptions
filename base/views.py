@@ -149,6 +149,7 @@ def delete_subscription(request, key):
     return render(request, 'base/delete.html', {'obj': subscription_obj})
 
 
+@login_required(login_url='login')
 def stats(request):
     """Handles presenting and calculating the stats"""
     subscriptions = Subscription.objects.filter(owner=request.user)
